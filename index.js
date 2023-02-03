@@ -28,8 +28,16 @@ io.on("connection", (socket) => {
 
   socket.on("createComment", (msg) => {
     // console.log(msg);
-    const { username, content, hotelId, createdAt, rating, send, comment,userId } =
-      msg;
+    const {
+      username,
+      content,
+      hotelId,
+      createdAt,
+      rating,
+      send,
+      comment,
+      userId,
+    } = msg;
     if (send === "replyComment") {
       msg._id = comment._id;
       msg.reply = comment.reply;
