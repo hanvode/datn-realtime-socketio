@@ -5,7 +5,7 @@ const io = require("socket.io")(8900, {
 });
 let users = [];
 io.on("connection", (socket) => {
-  // console.log(socket.id + " connected.");
+  console.log(socket.id + " connected.");
 
   socket.on("joinRoom", (id) => {
     const user = { userId: socket.id, room: id };
@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    // console.log(socket.id + " disconnected.");
+    console.log(socket.id + " disconnected.");
     users = users.filter((user) => user.userId !== socket.id);
   });
 });
