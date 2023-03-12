@@ -49,9 +49,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("follow", (msg) => {
-    const { content, hotelOwnerId, createdAt } = msg;
-    console.log(msg)
-    io.to(hotelOwnerId).emit("followNotification",msg)
+    const { content, followOwnerId, createdAt } = msg;
+    io.to(followOwnerId).emit("followNotification", msg);
   });
 
   socket.on("disconnect", () => {
