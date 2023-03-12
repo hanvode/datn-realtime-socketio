@@ -48,6 +48,12 @@ io.on("connection", (socket) => {
     }
   });
 
+  socket.on("follow", (msg) => {
+    const { content, hotelOwnerId, createdAt } = msg;
+    console.log(msg)
+    io.to(hotelOwnerId).emit("followNotification",msg)
+  });
+
   socket.on("disconnect", () => {
     console.log(socket.id + " disconnected.");
     users = users.filter((user) => user.userId !== socket.id);
