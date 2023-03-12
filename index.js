@@ -53,6 +53,11 @@ io.on("connection", (socket) => {
     io.to(followOwnerId).emit("followNotification", msg);
   });
 
+  socket.on("updateMenu", (msg) => {
+    const { content, followOwnerId, createdAt } = msg;
+    followOwnerId.map((m) => io.to(m).emit("menuNotification", msg));
+  });
+
   socket.on("disconnect", () => {
     console.log(socket.id + " disconnected.");
     users = users.filter((user) => user.userId !== socket.id);
